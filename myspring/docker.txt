@@ -1,0 +1,55 @@
+-------------------------docker初始化--------------------------------
+https://hub.docker.com
+yum update
+sudo yum install epel-release
+sudo yum install docker-io
+yum install docker-io
+
+service docker start
+sudo chkconfig docker on
+
+docker search mysql --从https://hub.docker.com搜索能拉去的mysql
+docker images   搜索所有镜像
+docker pull mysql:5.5 拉取镜像
+    --5.5为标签，从https://hub.docker.com可得到
+docker rmi 012214321321(IMAGE ID)   删除镜像
+
+运行mytomcat容器
+docker run --name mytomcat -d tomcat:latest
+-d：后台运行
+-p: 6379:6379   端口映射
+docker run -d -p 8888:8080  tomcat
+--name可省略，容器内部的8080映射到外部8888
+可同时启动多个，不同的端口映射
+
+
+查看运行中的容器:
+docker ps   （-a 查看所有容器）
+停止运行中的容器:docker stop mytomcat
+再次运行中容器:docker start mytomcat
+删除容器:docker rm mytomcat
+
+查看容器日志：docker log mytomcat
+
+更多命令：https://docs.docker.com/engine/reference/commandline/docker
+
+
+
+
+-------------------------项目应用docker环境搭建------------------------------
+
+拉去mysql:
+    docker pull mysql
+启动mysql镜像：（需要加参数密码）
+ --docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+ --docker run --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+
+
+mysql高级应用
+https://hub.docker.com/_/mysql/
+使用配置文件：
+docker run --name some-mysql -v /my/custom:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+将主机的/my/custom文件夹挂载到mysqldocker容器的/my/custom:/etc/mysql/conf.d
+直接指定：
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
