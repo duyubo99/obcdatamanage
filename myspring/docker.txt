@@ -53,3 +53,11 @@ docker run --name some-mysql -v /my/custom:/etc/mysql/conf.d -e MYSQL_ROOT_PASSW
 将主机的/my/custom文件夹挂载到mysqldocker容器的/my/custom:/etc/mysql/conf.d
 直接指定：
 docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+
+---------------------------redis------------------------------------
+镜像中国中拉去redis
+docker pull registry.docker-cn.com/library/redis
+启动redis
+docker run -d -p 6379:6379 --name myredis registry.docker-cn.com/library/redis
+docker ps   （-a 查看所有容器）

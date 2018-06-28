@@ -1,2 +1,7 @@
 https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/htmlsingle/ spring api
 spring.thymeleaf.cache=false 禁用模板引擎缓存，ctrl+f9重新编译
+
+redis缓存
+
+消息队列
+

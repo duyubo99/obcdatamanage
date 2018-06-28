@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@CacheConfig(cacheNames = "user")
+@CacheConfig(cacheNames = "user",cacheManager = "userCacheManager")
 @Service
 public class UserService {
 
