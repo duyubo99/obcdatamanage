@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OtherTests {
+public class RedisTests {
     //操作k-v都是字符串的
     @Autowired
     StringRedisTemplate stringRedisTemplate;
