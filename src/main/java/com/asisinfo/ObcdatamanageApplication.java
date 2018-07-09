@@ -1,9 +1,7 @@
 package com.asisinfo;
 
-import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 /**
@@ -12,14 +10,17 @@ import org.springframework.cache.annotation.EnableCaching;
  * @CachePut(key = "#user.id")      改
  * @CacheEvict      删
  */
-@EnableCaching
+//@EnableCaching
 /**
  * 基于注解的rabbit
  * @RabbitListener+@EnableRabbit监听消息队列里的内容
  */
-@EnableRabbit
+//@EnableRabbit
+/**
+ * 开启异步注解功能
+ */
+//@EnableAsync
 public class ObcdatamanageApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ObcdatamanageApplication.class, args);
     }

@@ -64,4 +64,12 @@ docker ps   （-a 查看所有容器）
 
 
 -----------------------rabbit--------------------------
+docker pull registry.docker-cn.com/library/rabbitmq:3-management
+#带management的表示有webui
 docker run -d -p 5672:5672 -p 15672:15672 --name myrabbitmq 07fd0471c005
+
+
+---------------------------Elasticsearch---------------------------
+docker pull registry.docker-cn.com/library/elasticsearch
+#web通信端口：9200 各节点通信端口：9300
+docker run -e ES_JAVA_OPTS="-Xms256m -Xmx256m" -d -p 9200:9200 -p 9300:9300 --name ES01 13604eee49ae

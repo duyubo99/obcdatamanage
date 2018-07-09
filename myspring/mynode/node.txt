@@ -5,3 +5,7 @@ redis缓存
 
 消息队列
 
+Elasticsearch
+
+ui:https://jpd53d.axshare.com   123456
+

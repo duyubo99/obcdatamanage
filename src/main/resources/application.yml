@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: jdbc:mysql://node4:3306/obc
+#    url: jdbc:mysql://node4:3306/obc
+    url: jdbc:mysql://localhost:3306/obc
     username: root
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -10,10 +11,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  redis:
-    host: node4
-  rabbitmq:
-    host: node4
-    username: guest
-    password: guest
+#  redis:
+#    host: node4
+#  rabbitmq:
+#    host: node4
+#    username: guest
+#    password: guest
     #virtual-host: /    默认为/，可以不指定
