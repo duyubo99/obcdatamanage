@@ -7,10 +7,19 @@ import java.util.Date;
  * 数据操作日志
  */
 @Entity(name="DATA_LOG")
-public class DataLog {
+public class DataLog extends BaseModel{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     @Column
     private String dataNum;//接口编号
@@ -33,13 +42,6 @@ public class DataLog {
     @Temporal(TemporalType.TIMESTAMP)
     private Date releaseTime;//发布时间
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getDataNum() {
         return dataNum;
