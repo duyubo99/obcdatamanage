@@ -2,6 +2,8 @@ package com.asisinfo.controller;
 
 import com.asisinfo.domain.User;
 import com.asisinfo.service.UserService;
+import com.asisinfo.utils.MyPage;
+import com.asisinfo.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +17,31 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("userlist")
-    public String userList(Model model){
-        User u = new User();
-        u.setUsername("a");
-        List<User> all = userService.findAll(u);
-        model.addAttribute("users",all);
+    /**
+     * 到达userList页面
+     */
+    @GetMapping("toUserlistPage")
+    public String toUserList(Model model){
+        model.addAttribute("message","hello1");
         return "user/list";
     }
+
+    /**
+     * 加载User数据
+     */
+    @GetMapping("getUserlist")
+    public String getUserList(Model model){
+        UserVo u = new UserVo();
+        u.setUsername("t");
+        MyPage<User,UserVo> page = new MyPage<User,UserVo>();
+        page.setPageNo(0);
+        page.setPageSize(5);
+        page.setQueryModel(u);
+        page =  userService.findAll(page);
+        model.addAttribute("users",page.getRecords());
+        return "user/list";
+    }
+
 
     //来到员工添加页面
     @GetMapping("/user")

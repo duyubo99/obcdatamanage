@@ -1,10 +1,4 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 <!--topbar-->
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0" th:fragment="topbar">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">[[${session.loginUser}]]</a>
@@ -53,7 +47,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="#" th:href="@{/userlist}"
+                <a class="nav-link active" href="#" th:href="@{/toUserlistPage}"
                 th:class="${activeUri=='users'?'nav-link active':'nav-link'}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -145,5 +139,4 @@
     </div>
 </nav>
 
-</body>
 </html>

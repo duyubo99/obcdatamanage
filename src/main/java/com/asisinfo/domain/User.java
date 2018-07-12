@@ -6,12 +6,6 @@ import javax.persistence.*;
 @Entity(name="USER")
 public class User extends BaseModel {
 
-
-
-    public User(){
-        super();
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
