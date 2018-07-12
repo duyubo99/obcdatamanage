@@ -1,0 +1,53 @@
+#测试
+插入数据：
+put请求：node4:9200/megacorp/employee/1
+{
+	"first_name" : "John",
+	"last_name" : "Smith",
+	"age" : 25,
+	"about" : "I love to go rock climbing",
+	"interests" : ["sports","music"]
+}
+响应：
+{
+    "_index": "megacorp",
+    "_type": "employee",
+    "_id": "1",
+    "_version": 1,
+    "result": "created",
+    "_shards": {
+        "total": 2,
+        "successful": 1,
+        "failed": 0
+    },
+    "created": true
+}
+
+获取数据
+GET请求：node4:9200/megacorp/employee/1
+    所有数据：
+GET请求：node4:9200/megacorp/employee/_search
+    条件查询：
+GET请求：node4:9200/megacorp/employee/_search?q=last_name:Smith2
+    条件查询-查询表达式：
+
+
+删除数据
+DELETE请求：node4:9200/megacorp/employee/1
+
+
+---------------------------------------------------
+springboot默认支持两种技术来和ES交互
+1.Jest（默认不生效）
+    需要导入jest的工具包(io.searchbox.client.JestClient)
+    <!-- https://mvnrepository.com/artifact/io.searchbox/jest -->
+    <dependency>
+        <groupId>io.searchbox</groupId>
+        <artifactId>jest</artifactId>
+        <version>5.3.3</version>
+    </dependency>
+2.SpringData ElasticSearch
+    1)、Client节点信息
+    2）、ElasticsearchTemplate
+    3）、ElasticsearchRepository接口
+
