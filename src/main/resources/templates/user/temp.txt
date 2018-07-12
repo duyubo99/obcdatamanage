@@ -1,0 +1,19 @@
+<!--<table class="table table-striped table-sm">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>lastName</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="user:${users}">
+									<td th:text="${user.id}"></td>
+									<td>[[${user.username}]]</td>
+									<td>
+										<a class="btn btn-sm btn-primary" th:href="@{/user/}+${user.id}">编辑</a>
+										<button th:attr="del_uri=@{/user/}+${user.id}" class="btn btn-sm btn-danger deleteBtn">删除</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>-->
