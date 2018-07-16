@@ -63,12 +63,14 @@ public class BaseService<T,K> {
     public MyPage<T,K> findAllByPage(MyPage<T,K> myPage, Sort.Direction directio, String sortField,
                                            Specification<T> spec, BaseRepository baseRepository){
         Sort sort = new Sort(directio,sortField);
-        Pageable pageable = new PageRequest(myPage.getPageNo(),myPage.getPageSize(),sort);
+        Pageable pageable = new PageRequest(myPage.getPage(),myPage.getPageSize(),sort);
         Page<T> all;
         if(spec!=null){//有条件的查询
             all= baseRepository.findAll(spec, pageable);
+            myPage.setTotalRecord((int)baseRepository.count(spec));
         }else{
-            all=baseRepository.findAll(pageable);
+            all = baseRepository.findAll(pageable);
+            myPage.setTotalRecord((int) baseRepository.count());
         }
         List<K> listVo=new ArrayList<K>(all.getContent().size());
         try {
@@ -91,6 +93,8 @@ public class BaseService<T,K> {
      * @return
      */
     public MyPage<T,K> findAllByPage(MyPage<T,K> myPage,Specification<T> spec, BaseRepository baseRepository){
-        return findAllByPage(myPage,Sort.Direction.ASC,"id",spec,baseRepository);
+        return findAllByPage(myPage,
+                myPage.getOrder().equals("asc")?Sort.Direction.ASC:Sort.Direction.DESC,
+                myPage.getSort(),spec,baseRepository);
     }
 }

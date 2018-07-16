@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 public class MyPage<T,K> implements Serializable {
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     /**
@@ -19,24 +16,36 @@ public class MyPage<T,K> implements Serializable {
      */
     private List<K> records;
     /**
+     * 偏移量
+     */
+    private int offset;
+    /**
      * 页码
      */
-    private int pageNo = 1;
+    private int page;
 
     /**
      * 每页显示长度
      */
-    private int pageSize = 5;
+    private int pageSize;
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
     /**
-     * 分页开始
+     * 排序字段
      */
-    private String start;
-
+    private String sort;
     /**
-     * 分页结束
+     * 排序
      */
-    private String end;
+    private String order;
+
     /**
      * 条件实体类
      */
@@ -50,52 +59,48 @@ public class MyPage<T,K> implements Serializable {
         this.queryModel = queryModel;
     }
 
-    public String getEnd()
-    {
-        end = String.valueOf((pageNo * pageSize));
-        return end;
-    }
-
-    public String getStart()
-    {
-        start = String.valueOf(((pageNo - 1) * pageSize));
-        return start;
-    }
-
-    public int getTotalRecord()
-    {
+    public int getTotalRecord() {
         return totalRecord;
     }
 
-    public void setTotalRecord(int totalRecord)
-    {
+    public void setTotalRecord(int totalRecord) {
         this.totalRecord = totalRecord;
     }
 
-    public List<K> getRecords()
-    {
+    public List<K> getRecords() {
         return records;
     }
 
-    public void setRecords(List<K> records)
-    {
+    public void setRecords(List<K> records) {
         this.records = records;
     }
 
-    public int getPageNo() {
-        return pageNo;
+    public int getOffset() {
+        return offset;
     }
 
-    public void setPageNo(int pageNo) {
-        this.pageNo = pageNo;
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
-    public int getPageSize() {
-        return pageSize;
+    public String getSort() {
+        return sort;
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
+    public int getPage() {
+        page=offset/pageSize;
+        return page;
+    }
 }

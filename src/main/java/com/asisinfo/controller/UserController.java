@@ -1,7 +1,9 @@
 package com.asisinfo.controller;
 
+import com.asisinfo.controller.base.BaseController;
 import com.asisinfo.domain.User;
 import com.asisinfo.service.UserService;
+import com.asisinfo.utils.JsonUtil;
 import com.asisinfo.utils.MyPage;
 import com.asisinfo.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,35 +14,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class UserController {
-
+@RequestMapping("user")
+public class UserController{
     @Autowired
     private UserService userService;
-
-    /**
-     * 到达userList页面
-     */
-    @GetMapping("toUserlistPage")
-    public String toUserList(Model model){
-        model.addAttribute("message","hello1");
-        return "user/list";
-    }
 
     /**
      * 加载User数据
      */
     @GetMapping("getUserlist")
-    public String getUserList(Model model){
-        UserVo u = new UserVo();
-        u.setUsername("t");
-        MyPage<User,UserVo> page = new MyPage<User,UserVo>();
-        page.setPageNo(0);
-        page.setPageSize(5);
-        page.setQueryModel(u);
+    @ResponseBody
+    public String getUserList(MyPage<User,UserVo> page){
+//        UserVo u = new UserVo();
+//        u.setUsername("t");
+//        page.setQueryModel(u);
         page =  userService.findAll(page);
-        model.addAttribute("users",page.getRecords());
+        return JsonUtil.pageToJson(page);
+    }
+    /**
+     * 到达userList页面
+     */
+    @GetMapping("toUserlistPage")
+    public String toUserList(Model model){
         return "user/list";
     }
+
 
 
     //来到员工添加页面
