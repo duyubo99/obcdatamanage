@@ -1,6 +1,5 @@
 package com.asisinfo.controller;
 
-import com.asisinfo.controller.base.BaseController;
 import com.asisinfo.domain.User;
 import com.asisinfo.service.UserService;
 import com.asisinfo.utils.JsonUtil;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("user")
 public class UserController{
@@ -22,12 +19,9 @@ public class UserController{
     /**
      * 加载User数据
      */
-    @GetMapping("getUserlist")
+    @PostMapping("getUserlist")
     @ResponseBody
-    public String getUserList(MyPage<User,UserVo> page){
-//        UserVo u = new UserVo();
-//        u.setUsername("t");
-//        page.setQueryModel(u);
+    public String getUserList(@RequestBody MyPage<User,UserVo> page){
         page =  userService.findAll(page);
         return JsonUtil.pageToJson(page);
     }

@@ -10,6 +10,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService extends BaseService<User,UserVo> {
@@ -26,15 +28,21 @@ public class UserService extends BaseService<User,UserVo> {
     }
     public MyPage<User,UserVo> findAll(MyPage<User,UserVo> page){
         UserVo vo =page.getQueryModel();
-        if(vo==null){//条件为空时
+        if(vo.getUsername()==null&&vo.getId()==null){//条件为空时
             return findAllByPage(page,null,userRepository);
         }
         Specification<User> spec=new Specification<User>() {
             @Override
             public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                Path<String> name = root.get("username");
-                Predicate p1 = cb.like(name, "%"+vo.getUsername()+"%");
-                query.where(p1);
+                List<Predicate> list = new ArrayList<Predicate>();
+                if(vo.getUsername()!=null){
+                    list.add( cb.like(root.get("username"), "%"+vo.getUsername()+"%"));
+                }
+                if(vo.getId()!=null&&!vo.getId().equals("")){
+                    list.add( cb.equal(root.get("id"), vo.getId()));
+                }
+                Predicate[] p = new Predicate[list.size()];
+                query.where(cb.and(list.toArray(p)));
                 return query.getRestriction();
             }
         };
