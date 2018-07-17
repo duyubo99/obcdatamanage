@@ -33,23 +33,15 @@ public class UserController{
         return "user/list";
     }
 
-
-
-    //来到员工添加页面
-    @GetMapping("/user")
-    public String toAddPage(Model model){
-        return "user/update_user";
-    }
-
     //员工添加
     //SpringMVC自动将请求参数和入参对象的属性进行一一绑定；要求请求参数的名字和javaBean入参的对象里面的属性名是一样的
-    @PostMapping("/user")
+    @PostMapping("/insertUser")
     public String addEmp(User user){
         //保存员工
         userService.save(user);
         // redirect: 表示重定向到一个地址  /代表当前项目路径
         // forward: 表示转发到一个地址
-        return "redirect:/userlist";
+        return "redirect:/user/toUserlistPage";
     }
 
     //来到修改页面，查出当前员工，在页面回显

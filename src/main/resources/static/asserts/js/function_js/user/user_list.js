@@ -2,6 +2,13 @@ $(function () {
     $("#search_user").click(function () {
         $("#userList").bootstrapTable('refresh');
     });
+    $("#updateUser").submit(function(){
+        if($("[name='password2']").val()!=$("[name='password']").val()){
+            alert("两次密码不一致，请重新输入！");
+            $("[name='password2']").select();
+            return false;
+        }
+    })
 })
 
 $("#userList").bootstrapTable({ // 对应table标签的id

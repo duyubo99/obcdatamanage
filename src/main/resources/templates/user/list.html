@@ -26,7 +26,8 @@
 					</div>
 					<!--<h2><a class="btn btn-sm btn-success" href="emp" th:href="@{/user}">新增用户</a></h2>-->
 					<div id="toolbar" class="btn-group">
-						<button id="btn_add" type="button" class="btn btn-outline-secondary">
+						<button id="btn_add" type="button" class="btn btn-outline-secondary"
+								data-toggle="modal" data-target="#exampleModal">
 							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
 						</button>
 						<button id="btn_edit" type="button" class="btn btn-outline-secondary">
@@ -40,6 +41,50 @@
 				</main>
 			</div>
 		</div>
+<!--模态框-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">添加用戶</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form th:action="@{/user/insertUser}" method="post" id="updateUser">
+				<div class="modal-body">
+					<!--发送put请求修改员工数据-->
+					<!--
+                    1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
+                    2、页面创建一个post表单
+                    3、创建一个input项，name="_method";值就是我们指定的请求方式
+                    -->
+					<input type="hidden" name="_method" value="put" th:if="${user!=null}"/>
+					<input type="hidden" name="id" th:if="${user!=null}" th:value="${user.id}">
+					<div class="form-group">
+						<label>用户名</label>
+						<input name="username" type="text" class="form-control" placeholder="请输入用户名"
+							   required="" th:value="${user!=null}?${user.username}">
+					</div>
+					<div class="form-group">
+						<label>密码</label>
+						<input name="password" type="password" class="form-control" placeholder="请输入密码"
+							   required="" th:value="${user!=null}?${user.password}">
+					</div>
+					<div class="form-group">
+						<label>密码</label>
+						<input name="password2" type="password" class="form-control"
+							   required="" placeholder="请再次输入密码">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">退出</button>
+					<button type="submit" class="btn btn-primary" th:text="${user!=null}?'修改':'保存'">保存</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 <script type="text/javascript"  th:inline="javascript" src="/asserts/js/function_js/user/user_list.js" />
 <script>
 	$(".deleteBtn").click(function(){
