@@ -6,31 +6,22 @@
     <meta name="author" content="">
 
     <title>Dashboard Template for Bootstrap</title>
-    <link href="/asserts/bootstrap-4.0.0-dist/css/bootstrap.css" th:href="@{/asserts/bootstrap-4.0.0-dist/css/bootstrap.css}" rel="stylesheet">
 
-    <link href="/asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
-
-    <script type="text/javascript" src="/asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
-    <script type="text/javascript" src="/asserts/js/popper.min.js" th:src="@{/asserts/js/popper.min.js}"></script>
-    <script type="text/javascript" src="/asserts/bootstrap-4.0.0-dist/js/bootstrap.min.js" th:src="@{/asserts/bootstrap-4.0.0-dist/js/bootstrap.min.js}"></script>
-
-    <link href="/asserts/css/bootstrap-table.css" rel="stylesheet">
-    <script type="text/javascript" src="/asserts/js/bootstrap-table.js"></script>
-    <script type="text/javascript" src="/asserts/js/bootstrap-table-zh-CN.js"></script>
-
+    <link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/asserts/js/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/asserts/bootstrap-4.0.0-dist/js/bootstrap.min.js}"></script>
+    <link th:href="@{/asserts/bootstrap-4.0.0-dist/css/bootstrap.css}" rel="stylesheet">
+    <!--bootstrap-table-->
+    <script type="text/javascript" th:src="@{/asserts/js/bootstrap-table.js}"></script>
+    <script type="text/javascript" th:src="@{/asserts/js/bootstrap-table-zh-CN.js}"></script>
+    <link th:href="@{/asserts/css/bootstrap-table.css}" rel="stylesheet">
     <!-- Icons -->
     <!--<script type="text/javascript" src="/asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>-->
 
     <!-- Graphs -->
-    <script type="text/javascript" src="/asserts/js/Chart.min.js" th:src="@{/asserts/js/Chart.min.js}"></script>
+    <!--<script type="text/javascript" src="/asserts/js/Chart.min.js" th:src="@{/asserts/js/Chart.min.js}"></script>-->
     <script>
-        var curPath = window.document.location.href;
-        //获取主机地址之后的目录，如： test/test.jsp
-        var pathName = window.document.location.pathname;
-        var pos = curPath.indexOf(pathName);
-        //获取主机地址，如： http://localhost:8088
-        var basePath = curPath.substring(0, pos);
-        feather.replace()
+        var basePath = "[[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]]";
     </script>
-    <link rel="stylesheet" href="../../static/asserts/bootstrap-4.0.0-dist/css/bootstrap.css">
 </head>

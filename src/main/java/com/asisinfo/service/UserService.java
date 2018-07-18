@@ -54,11 +54,15 @@ public class UserService extends BaseService<User,UserVo> {
     }
 
     public User getUser(Integer id){
-        return  userRepository.getOne(id);
+        return  userRepository.findOne(id);
     }
 
     public void delete(Integer id){
         userRepository.delete(id);
+    }
+
+    public void deleteBatchByid(String ids){
+        super.deleteBatchByid(ids,userRepository);
     }
 
 

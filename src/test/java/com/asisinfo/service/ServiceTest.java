@@ -43,5 +43,7 @@ public class ServiceTest {
     @Test
     public void testPage(){
 //        userService.findAll();
+        User user = userService.getUser(1);
+        System.out.println(user);
     }
 }

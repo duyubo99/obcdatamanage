@@ -97,4 +97,17 @@ public class BaseService<T,K> {
                 myPage.getOrder().equals("asc")?Sort.Direction.ASC:Sort.Direction.DESC,
                 myPage.getSort(),spec,baseRepository);
     }
+    /*
+     * @Author: Mr.du
+     * @Date: 2018/7/18 15:48
+     * @Param:  以逗号分隔字符串
+     * @param baseRepository
+     * @Description:批量删除
+     */
+    public void deleteBatchByid(String ids,BaseRepository baseRepository){
+        String[] idArr = ids.split(",");
+        for (String id :idArr){
+            baseRepository.delete(Integer.valueOf(id));
+        }
+    }
 }

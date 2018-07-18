@@ -1,22 +1,10 @@
 package com.asisinfo.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-/**
- * 因为你需要序列化对象有一个属性是一类类型，而你使用了Hibernate的延迟加载所以这里是个Hibernate的代理对象。
- * 该代理对象有些属性不能被序列化所以会报错。
- *
- * 解决办法：在类型上加如下注解把不需要序列化的属性屏蔽掉
- * @JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
- */
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public abstract class BaseModel implements Serializable {
     private static final long serialVersionUID = -6391445021378844473L;
 

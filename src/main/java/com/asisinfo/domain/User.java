@@ -1,8 +1,9 @@
 package com.asisinfo.domain;
 
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
 @Entity(name="USER")
 public class User extends BaseModel {
 
